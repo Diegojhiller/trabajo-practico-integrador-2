@@ -1,8 +1,8 @@
 import { Schema, model } from "mongoose";
 
-const ObjectId = Schema.type.ObjectId;
+const ObjectId = Schema.Types.ObjectId;
 
-const articleSchema = new Schema({
+export const articleSchema = new Schema({
     title:{
         type: String,
         min:3,
@@ -14,9 +14,10 @@ const articleSchema = new Schema({
     },
     excerpt:{
         type:String,
-        max:500
+        max:500,
+        required: false
     },
-    statud:
+    status:
     {
         type:String,
         enum: ["published", "archived"],
@@ -26,14 +27,14 @@ const articleSchema = new Schema({
         type: ObjectId,
         ref: "User"
     },
-    tags:{
-        type: ObjectId,
+    tags:[{
+        type:ObjectId,
         ref: "Tag"
-    },
+}],
 },
 {
     timestamps: true
 });
 
 
-export default model("Article", articleSchema);
+export default model("article", articleSchema);
