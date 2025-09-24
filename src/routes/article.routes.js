@@ -1,12 +1,12 @@
-import { Router } from "express";
-import { createArticle, deleteArticle, getAllArtilce, getArticleById, updateArticle } from "../controllers/article.controllers";
+import { Router }  from "express";
+import { createArticle, deleteArticle, getAllArtilce, getArticleById, updateArticle } from "../controllers/article.controllers.js";
 
-const router = Router ();
+const articleRouter = Router();
 
-router.post('/', createArticle);
-router.get('/', getAllArtilce);
-router.get('/:id' , getArticleById);
-router.put('/:id', updateArticle);
-router.delete('/:id', deleteArticle)
+articleRouter.post('/', createArticle);
+articleRouter.get('/', getAllArtilce);
+articleRouter.get('/:id' , getArticleById);
+articleRouter.put('/:id', updateArticle);
+articleRouter.delete('/:id', deleteArticle)
 
-export default router;
+export default articleRouter;

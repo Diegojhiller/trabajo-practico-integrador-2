@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 const ObjectId = Schema.Types.ObjectId;
 
-export const articleSchema = new Schema({
+const articleSchema = new Schema({
     title:{
         type: String,
         min:3,
@@ -36,5 +36,6 @@ export const articleSchema = new Schema({
     timestamps: true
 });
 
+const articleModel = model("article", articleSchema);
 
-export default model("article", articleSchema);
+export default articleModel;

@@ -18,5 +18,6 @@ const tagSchema = new Schema({
     timestamps: true
 });
 
+const TagModel = model("tag", tagSchema);
 
-export default model("tag", tagSchema);
+export default TagModel;

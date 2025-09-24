@@ -1,6 +1,6 @@
-import Schema, { model } from "mongoose";
+import { Schema, model } from "mongoose";
 
-export const ProfileModel = new Schema({
+const ProfileModel = new Schema({
   fitstName: {
     type: String,
     min: 3,
@@ -25,7 +25,7 @@ export const ProfileModel = new Schema({
   },
 });
 
-export const userSchema = new Schema({
+const userSchema = new Schema({
   username: {
     type: String,
     unique: true,
@@ -50,5 +50,7 @@ export const userSchema = new Schema({
   timestamps: true
 });
 
-export default model ("User", UserModel);
+const UserModel = model("User", userSchema)
+
+export default UserModel;
 
