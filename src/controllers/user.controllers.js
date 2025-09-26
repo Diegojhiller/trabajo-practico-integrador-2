@@ -46,14 +46,16 @@ export const updateUser = async(req,res) => {
     }
 };
 
-export const deleteUser = async(req,res) => {
-    try {
-        const user = await user.findById(req.params.id);
+export const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await user.findById(id);
+    if (!user || user.isDeleted) return res.status(404).json({ message: 'Usuario no encontrado' });
 
-        await user.destroy();
-        res.status(200).json(); 
-        
-    } catch (error) {
-        res.status(500).json(error);
-    }
+    user.isDeleted = true;
+    await user.save();
+    res.status(200).json({ message: 'Usuario eliminado (lógico)' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error eliminando usuario' });
+  }
 };

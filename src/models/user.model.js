@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import { hashPassword } from '../helper/bcrypt.helper.js';
 
 const ProfileModel = new Schema({
   fitstName: {
@@ -44,10 +45,21 @@ const userSchema = new Schema({
     value: ["user", "admin"],
     default: "user"
   },
+  deleteAt: {
+    type: Date,
+    default: null
+  },
   profile: [ ProfileModel ], 
+  
 },
-{
-  timestamps: true
+ { timestamps: true
+});
+
+// Pre-save hook para hashear password
+userSchema.pre('save', async function(next) {
+  if (!this.isModified('password')) return next();
+  this.password = await hashPassword(this.password);
+  next();
 });
 
 const UserModel = model("User", userSchema)
