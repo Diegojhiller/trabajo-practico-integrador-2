@@ -1,6 +1,8 @@
 import { Schema, model } from "mongoose";
 import { hashPassword } from '../helper/bcrypt.helper.js';
 
+
+//esquema enbebido en el esquema de usuario
 const ProfileModel = new Schema({
   fitstName: {
     type: String,
